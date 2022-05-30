@@ -1,0 +1,29 @@
+import React from "react"
+import Product from "./Product/Product";
+import { Grid } from "@material-ui/core";
+import useStyles from "./styles"
+// const products=[
+//     {id:1, name:"Shoes",price:'$5',description:"Running Shoes" ,image:"data:image/png;base64,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"},
+//     {id:2, name:"Macbook",price:'$8',description:"Apple Laptop",image:"https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSBQMMhi4vCf1zL1OzzY7OwTTIniXmtbetXEPXoRg_Q6kMfD9WGkJf5TqQubkiK&usqp=CAc"},
+// ]
+
+const Products=({ products, onAddToCart })=>{
+   
+    const classes=useStyles()
+    return (
+        <main className={classes.content}>
+            <div className={classes.toolbar}/>
+                <Grid container justify="center"  spacing={4}>
+                    {products.map((product)=>(
+                        <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
+                            <Product product={product}  onAddToCart={onAddToCart}/>
+                        </Grid>
+                    ))}
+                </Grid>
+
+        </main>
+
+    )
+}
+
+export default Products
